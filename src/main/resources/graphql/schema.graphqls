@@ -1,0 +1,58 @@
+type Query {
+    greeting: String
+    bookById(id: ID): Book
+    project(id: ID!): Project
+}
+
+type Mutation {
+    createBook(input: BookInput!): Book
+}
+
+# INPUT
+input BookInput {
+    title: String!
+    price: Float!
+    pages: Int
+    author: AuthorInput
+}
+
+input AuthorInput {
+    firstname: String!
+    lastname: String
+}
+
+
+# OUTPUT
+type Book {
+    id: ID!
+    title: String!
+    price: Float
+    pages: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstname: String
+    lastname: String
+}
+
+type Project {
+    slug: ID!
+    name: String
+    repositoryUrl: String
+    status: ProjectStatus
+    releases: [Release]
+}
+
+enum ProjectStatus {
+    ACTIVE
+    END_OF_LIFE
+    INCUBATING
+    COMMUNITY
+}
+
+type Release {
+    version: String!
+    current: Boolean
+}
