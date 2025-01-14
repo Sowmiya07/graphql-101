@@ -2,6 +2,8 @@ type Query {
     greeting: String
     bookById(id: ID): Book
     project(id: ID!): Project
+    fruit(id: ID!): Fruit
+    fruits: [Fruit]
 }
 
 type Mutation {
@@ -55,4 +57,11 @@ enum ProjectStatus {
 type Release {
     version: String!
     current: Boolean
+}
+
+type Fruit {
+    id: String!
+    name: String!
+    family: String
+    color: String
 }
